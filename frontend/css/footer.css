@@ -1,0 +1,44 @@
+/* ALT KISIM (FOOTER) */
+
+.altKisim{
+background: var(--card);
+border-top:1px solid var(--border);
+margin-top:auto;
+padding:30px 20px 10px 20px;
+}
+
+.altKisimContainer{
+max-width:1300px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+}
+
+.altKisimKolon h3, .altKisimKolon h4{
+color:var(--text);
+margin-bottom:10px;
+}
+
+.altKisimKolon p, .altKisimKolon a{
+color:var(--text);
+opacity:0.7;
+font-size:14px;
+display:block;
+margin-bottom:5px;
+text-decoration:none;
+}
+
+.altKisimKolon a:hover{
+opacity:1;
+}
+
+.altKisimAlt{
+text-align:center;
+margin-top:20px;
+padding-top:10px;
+border-top:1px solid var(--border);
+color:var(--text);
+opacity:0.6;
+font-size:13px;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayfa Bulunamadı</title>
+<link rel="stylesheet" href="css/css.css">
+
+<style>
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+transition: all .3s ease;
+}
+
+
+
+body{
+background:var(--bg);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+
+
+.kart{
+background:var(--card);
+padding:40px 30px;
+border-radius:25px;
+box-shadow:0 20px 50px rgba(0,0,0,0.15);
+text-align:center;
+width:350px;
+}
+
+
+.kod{
+font-size:70px;
+font-weight:700;
+color:var(--primary);
+margin-bottom:10px;
+}
+
+
+.baslik{
+font-size:20px;
+color:var(--text);
+margin-bottom:10px;
+}
+
+.aciklama{
+font-size:14px;
+color:var(--text);
+opacity:.7;
+margin-bottom:10px;
+}
+</style>
+</head>
+
+
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+
+<button id="temaBtn">🌙</button>
+<div class="kart">
+    <div class="kod">404</div>
+    <div class="baslik">Sayfa Bulunamadı</div>
+    <div class="aciklama">  Aradığın sayfa mevcut değil veya silinmiş olabilir.</div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/canvas.js"></script>
+</body>
+</html>

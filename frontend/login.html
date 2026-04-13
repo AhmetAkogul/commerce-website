@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap</title>
+    <link rel="stylesheet" href="css/css.css">
+    <style>
+
+    </style>
+</head>
+
+
+<body id="loginregisterbody">
+
+<button id="temaBtn">🌙</button>
+
+<canvas id="bgCanvas"></canvas>
+
+    <div class="genelDiv" style="height: 370px">
+        <h3 style="text-align: center; color: var(--text);">Giriş Yap</h3>
+        <form align="center">
+            <div class="giris">
+                <span class="icon">📧</span>
+                <input type="email" placeholder="E-Posta Adresi" required>
+            </div>
+
+            <div class="giris">
+                <span class="icon">🔒</span>
+                <input type="password" placeholder="Şifre" required>
+            </div>
+
+
+            <!-- bu kısım cloudflare eklentisi için -->
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAC0mCNo4RTdfct1e"></div>
+            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+
+            <button type="submit" style="margin-bottom: 15px; margin-top: 10px;">Giriş Yap</button>
+            
+
+            <p style="cursor: default; color: var(--text);">Hesabın yok mu? <a href="register.html" style="color: var(--text);">Kayıt Ol<a></p>
+                
+        </form>
+            <div id="uyari" class="uyari"></div>
+            <div id="basarili" class="basarili"></div>
+    </div>
+
+    
+    <script src="js/app.js"></script>
+    <script src="js/canvas.js"></script>
+    <script src="js/requests.js"></script>
+</body>
+</html>

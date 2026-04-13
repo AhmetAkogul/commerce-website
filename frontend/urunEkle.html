@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Ekle</title>
+    <link rel="stylesheet" href="css/css.css">
+    <style>
+        .genelDiv {
+            height: auto;
+            padding: 30px 20px;
+            width: 400px;
+        }
+        
+        .giris {
+            margin-bottom: 20px;
+        }
+        
+        h3 {
+            margin-bottom: 25px;
+        }
+
+        .geriDon {
+            margin-top: 15px;
+            display: block;
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .geriDon:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body id="loginregisterbody">
+
+<button id="temaBtn">🌙</button>
+
+<canvas id="bgCanvas"></canvas>
+
+    <div class="genelDiv">
+        <h3 style="text-align: center; color: var(--text);">Yeni Ürün Ekle</h3>
+        <form align="center" id="urunEkleForm">
+            <div class="giris">
+                <span class="icon">🏷️</span>
+                <input type="text" id="urunAdi" placeholder="Ürün Adı" required>
+            </div>
+
+            <div class="giris">
+                <span class="icon">₺</span>
+                <input type="number" id="urunFiyati" placeholder="Fiyat (TL)" required>
+            </div>
+            
+            <div class="giris">
+                <span class="icon">🖼️</span>
+                <input type="url" id="urunGorseli" placeholder="Görsel Linki (URL)" required>
+            </div>
+            
+            <div class="giris">
+                <span class="icon">📁</span>
+                <input type="text" id="urunKategorisi" placeholder="Kategori">
+            </div>
+            
+            <div class="giris">
+                <span class="icon">🔑</span>
+                <input type="text" id="urunAnahtarKelimeler" placeholder="Anahtar Kelimeler">
+            </div>
+
+            <button type="submit" style="margin-bottom: 10px; width: 80%; padding: 12px; font-size: 15px;">Ürün Ekle</button>
+            
+            <a href="anasayfa.html" class="geriDon">Ana Sayfaya Dön</a>
+        </form>
+        <div id="uyari" class="uyari"></div>
+        <div id="basarili" class="basarili"></div>
+    </div>
+
+
+
+    <script src="js/app.js"></script>
+    <script src="js/canvas.js"></script>
+    <script src="js/requests.js"></script>
+</body>
+</html>

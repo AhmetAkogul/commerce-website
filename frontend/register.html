@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol</title>
+    <link rel="stylesheet" href="css/css.css">
+    <style>
+.ad-soyad{
+position:relative;
+margin-bottom:15px;
+width:80%;
+margin-left:auto;
+margin-right:auto;
+}
+
+.ad-soyad input{
+width:100%;
+padding:10px 10px 10px 10px;
+border:1px solid var(--border);
+background:var(--sidebar);
+color:var(--text);
+border-radius:5px;
+font-size:14px;
+outline:none;
+}
+
+.ad-soyad input:focus{
+border:1px solid var(--text);
+}
+
+.ad-soyad input::placeholder{
+color:var(--text);
+opacity:0.6;
+}
+
+    </style>
+</head>
+<body id="loginregisterbody">
+<button id="temaBtn">🌙</button>
+
+<canvas id="bgCanvas"></canvas>
+
+    <div class="genelDiv">
+        <h3 style="text-align: center; color: var(--text);">Kayıt Ol</h3>
+        <form align="center">
+            <div class="ad-soyad">
+                <span class="icon">🧑</span>
+                <input type="text" placeholder="İsim" style="width: 100px;" required>
+                <input type="text" placeholder="Soyisim" style="width: 100px;" required>
+            </div>
+
+
+            <div class="giris">
+                <span class="icon">📧</span>
+                <input type="email" placeholder="E-Posta Adresi" required>
+            </div>
+
+            <div class="giris">
+                <span class="icon">🔒</span>
+                <input type="password" placeholder="Şifre" required>
+            </div>
+
+            <div class="giris">
+                <span class="icon">🔒</span>
+                <input type="password" placeholder="Şifre Tekrar" required>
+            </div>
+
+            <!-- bu kısım cloudflare eklentisi için -->
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAC0mCNo4RTdfct1e"></div>
+            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+            
+
+            <button type="submit" style="margin-bottom: 15px; margin-top: 10px;">Kayıt Ol</button>
+
+            <p style="cursor: default; color: var(--text);">Hesabın var mı? <a href="login.html" style="color: var(--text);">Giriş Yap<a></p>
+        </form>
+            <div id="uyari" class="uyari"></div>
+            <div id="basarili" class="basarili"></div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/canvas.js"></script>
+    <script src="js/requests.js"></script>
+</body>
+</html>

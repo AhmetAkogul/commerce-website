@@ -1,0 +1,662 @@
+﻿<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anasayfa</title>
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/footer.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 200vh;
+            padding-top: 70px;
+        }
+
+
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 1000;
+            transition: transform 0.35s ease;
+        }
+
+        .navbar.hide {
+            transform: translateY(-100%);
+        }
+
+
+
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--text);
+        }
+
+
+
+        .anaAramaKutusu {
+            position: relative;
+            flex: 1;
+            margin: 0 40px;
+        }
+
+        .searchIcon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            opacity: 0.6;
+        }
+
+        .anaAramaKutusu input {
+            width: 100%;
+            padding: 12px 18px 12px 40px;
+            /* icon için boşluk */
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            background: var(--input);
+            color: var(--text);
+            outline: none;
+        }
+
+        .anaAramaKutusu input:focus {
+            border: 1px solid var(--text);
+        }
+
+        .aramaKutusu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            display: none;
+            z-index: 2000;
+        }
+
+
+        .aramaPaneli {
+            position: absolute;
+            background: var(--card);
+            border-radius: 20px;
+            padding: 12px;
+            margin-left: 135px;
+            width: 1460px;
+        }
+
+
+        .aramaPaneli input {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 30px;
+            border: 2px solid var(--primary);
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+
+
+
+        .populerAramalar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .populerAramalar span {
+            padding: 8px 15px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            cursor: pointer;
+            background: var(--input);
+            color: var(--text);
+        }
+
+        .populerAramalar span:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+
+
+        .searchResults {
+            margin-top: 20px;
+        }
+
+        .resultItem {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        .resultItem:hover {
+            background: var(--input);
+        }
+
+
+
+        .navSagKismi {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            color: var(--text);
+        }
+
+        .sepetEmoji {
+            font-size: 22px;
+            cursor: pointer;
+            text-align: center;
+            justify-content: center;
+            margin-right: 60px;
+            border-radius: 15px;
+            width: 50px;
+        }
+
+        .sepetEmoji:hover {
+            background-color: var(--border);
+            border-radius: 15px;
+            width: 50px;
+        }
+
+
+        /* HERO SECTION (YENI) */
+        .girisKutu {
+            max-width: 1350px;
+            margin: 40px auto 10px auto;
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            border-radius: 24px;
+            padding: 60px 40px;
+            display: flex;
+            align-items: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.25);
+            position: relative;
+            overflow: hidden;
+            width: calc(100% - 80px);
+        }
+
+        .girisKutuContent {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .girisKutu h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .girisKutuContent p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .girisKutuContent button {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .girisKutu button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .girisKutu::before,
+        .girisKutu::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .girisKutu::before {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            right: -100px;
+        }
+
+        .girisKutu::after {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            right: 250px;
+        }
+
+
+
+        
+        .urunContainer {
+            max-width: 1350px;
+            margin: 30px auto 80px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+            padding: 0 40px;
+        }
+
+        .urunKart {
+            background: var(--card);
+            padding: 16px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .urunKart:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+
+        .urunKart a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .urunKart .img-wrapper {
+            overflow: hidden;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            background: var(--bg);
+            position: relative;
+        }
+
+        .urunKart img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .urunKart:hover img {
+            transform: scale(1.06);
+        }
+
+        .urunKart h3 {
+            color: var(--text);
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.4;
+            display: -webkit-box;
+            /* -webkit-line-clamp: 2; */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 44px;
+            /* 2 satir için sabit yukseklik */
+        }
+
+        /* fiyat */
+        .urunKart p {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 16px;
+            margin-top: auto;
+        }
+
+        /* buton */
+        .urunKart button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            margin-top: auto;
+        }
+
+        .urunKart button::before {
+            content: "🛒";
+            font-size: 16px;
+        }
+
+        .urunKart button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        .urunKart button:active {
+            transform: translateY(0);
+        }
+
+
+        .hesap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+            justify-content: center;
+            border-radius: 20px;
+            width: 130px;
+            margin-right: -20px;
+            margin-left: -15px;
+        }
+
+        .hesap:hover {
+            background-color: var(--border);
+            width: 130px;
+            border-radius: 20px;
+        }
+
+
+        .hesap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border-radius: 20px;
+            padding: 5px 10px;
+            transition: 0.3s;
+        }
+
+        .hesap:hover {
+            background: var(--border);
+        }
+
+        .hesapUst {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .hesapMenu {
+            position: absolute;
+            top: 60px;
+            right: 10;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            width: 170px;
+            list-style: none;
+            padding: 8px 0;
+
+            display: none;
+            transform: translateY(-10px);
+            pointer-events: none;
+
+            transition: all 0.25s ease;
+
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+        }
+
+
+
+        .hesapMenu.active {
+            display: block;
+            pointer-events: auto;
+        }
+
+
+
+        .hesapMenu li {
+            width: 100%;
+        }
+
+        .hesapMenu li:hover {
+            background-color: var(--border);
+        }
+
+        .hesapMenu a {
+            display: block;
+            padding: 10px 15px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .hesapMenu a:hover {
+            background: var(--input);
+        }
+
+        .inputWrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        /* ghost */
+
+        #ghostInput {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 30px;
+            border: 2px solid transparent;
+            background: transparent;
+            color: rgba(0, 0, 0, 0.25);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+
+        #aramaKutusuInputu {
+            position: relative;
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            outline: none;
+            z-index: 2;
+            background: transparent;
+            color: var(--text);
+        }
+
+        #aramaKutusuInputu:focus {
+            border: 1px solid var(--text);
+        }
+
+        body.dark #ghostInput {
+            color: rgba(255, 255, 255, 0.25);
+        }
+    </style>
+</head>
+
+
+<body>
+    <header class="navbar">
+        <div class="logo">E Ticaret</div>
+
+
+
+
+        <div class="anaAramaKutusu">
+            <span class="searchIcon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Ürün, kategori, marka ara">
+            <div class="aramaKutusu" id="aramaKutusu">
+                <div class="aramaPaneli">
+                    <div class="inputWrapper">
+                        <input type="text" id="ghostInput" disabled>
+                        <input type="text" id="aramaKutusuInputu" placeholder="">
+                    </div>
+
+
+                    <h3 style="color: var(--text);">Popüler Aramalar</h3><br>
+                    <div class="populerAramalar">
+                        <span>kadın mont</span>
+                        <span>erkek bot</span>
+                        <span>valiz</span>
+                        <span>ayakkabı</span>
+                        <span>adidas</span>
+                        <span>nike</span>
+                    </div><br>
+
+                    <div class="sonuclar" id="sonuclar"></div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="navSagKismi">
+            <div class="hesap" id="hesapBox">
+                <div class="hesapUst">
+                    <p style="font-size: 20px;">👤</p>
+                    <div>
+                        <span>Hesabım</span><br>
+                        <span id="kullaniciAdi">Giriş Yap</span>
+                    </div>
+                </div>
+
+                <ul class="hesapMenu" id="hesapMenu">
+                    <li><a href="hesap.html">Profil</a></li>
+                    <li><a href="#">Siparişlerim</a></li>
+                    <li><a href="#" id="logoutBtn">Çıkış Yap</a></li>
+                </ul>
+            </div>
+
+            <div class="sepetEmoji">🛒</div>
+            <button id="temaBtn">🌙</button>
+
+        </div>
+    </header>
+
+    <!-- <button id="testRequest">TEST REQUEST</button> -->
+
+
+
+
+    <div class="girisKutu">
+        <div class="girisKutuContent">
+            <h1>Yeni Nesil Alışveriş Deneyimi</h1>
+            <p>Aradığın her şey, en uygun fiyatlarla ve kapında.</p>
+            
+            <!-- ürünlerin 35 px üstüne kaydırmak için gerekli olan kod -->
+            <button onclick="const el = document.getElementById('urunlerAlani'); const y = el.getBoundingClientRect().top + window.pageYOffset - 35; window.scrollTo({top: y, behavior: 'smooth'});">Fırsatları İncele</button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="urunContainer" id="urunlerAlani">
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <footer class="altKisim">
+
+        <div class="altKisimContainer">
+
+            <div class="altKisimKolon">
+                <h3>AI Shop</h3>
+                <p>Yapay zeka destekli alışveriş deneyimi.</p>
+            </div>
+
+            <div class="altKisimKolon">
+                <h4>Hızlı Linkler</h4>
+                <a href="#">Ana Sayfa</a>
+                <a href="#">Ürünler</a>
+                <a href="#">Sepet</a>
+            </div>
+
+            <div class="altKisimKolon">
+                <h4>İletişim</h4>
+                <p>📧 info@aishop.com</p>
+                <p>📞 +90 555 555 55 55</p>
+                <p>📍 İstanbul, Türkiye</p>
+            </div>
+
+            <div class="altKisimKolon">
+                <h4>Bizi Takip Et</h4>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
+
+        </div>
+
+        <div class="altKisimAlt">
+            <p>© 2026 AI Shop - Tüm hakları saklıdır</p>
+        </div>
+
+    </footer>
+
+
+    <script src="js/app.js"></script>
+    <script src="js/requests.js"></script>
+    <script src="js/anasayfa.js"></script>
+    <script src="js/hayaletOneri.js"></script>
+</body>
+
+</html>
