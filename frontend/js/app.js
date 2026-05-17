@@ -23,16 +23,16 @@ const ustNavbar = document.querySelector(".navbar");
 
 window.addEventListener("scroll", () => {
 
-let suAnkiScroll = window.scrollY;
+  let suAnkiScroll = window.scrollY;
 
 if(suAnkiScroll > sonScroll){
-  ustNavbar.classList.add("hide"); // ustNavbar.style.display = "none"/"fixed"; kullanınca transistion çalışmıyor
-}
+    ustNavbar.classList.add("hide"); // ustNavbar.style.display = "none"/"fixed"; kullanınca transistion çalışmıyor
+  }
 else{
-  ustNavbar.classList.remove("hide");
-}
+    ustNavbar.classList.remove("hide");
+  }
 
-sonScroll = suAnkiScroll;
+  sonScroll = suAnkiScroll;
 });
 
 
@@ -46,22 +46,22 @@ const populerAramalar = document.querySelectorAll(".populerAramalar span");
 
 // ürün listesi, gerçek projede bu veriyi backendden çekmeliyiz şu anlık deneme amaçlı sabit bir array kullandım
 const products = [
-"Bluetooth Kulaklık",
-"Gaming Mouse",
-"Mekanik Klavye",
-"Mouse Pad",
-"Kablosuz Mouse",
-"RGB Klavye",
-"Webcam",
-"Oyuncu Kulaklığı"
+  "Bluetooth Kulaklık",
+  "Gaming Mouse",
+  "Mekanik Klavye",
+  "Mouse Pad",
+  "Kablosuz Mouse",
+  "RGB Klavye",
+  "Webcam",
+  "Oyuncu Kulaklığı"
 ];
 
 
 // inputa basınca panel aç
 input.addEventListener("click", () => {
-aramaKutusu.style.display = "flex"; // cssde display:none flex yapıp açıyom
-aramaKutusuInputu.value = input.value;
-aramaKutusuInputu.focus();
+  aramaKutusu.style.display = "flex"; // cssde display:none flex yapıp açıyom
+  aramaKutusuInputu.value = input.value;
+  aramaKutusuInputu.focus();
 });
 
 
@@ -69,25 +69,26 @@ aramaKutusuInputu.focus();
 // yazdıkça öneri
 aramaKutusuInputu.addEventListener("input", () => {
 
-let value = aramaKutusuInputu.value.toLowerCase();
-sonuclar.innerHTML = "";
+  let value = aramaKutusuInputu.value.toLowerCase();
+  sonuclar.innerHTML = "";
 
-let filtrelenmisOneriler = products.filter(p => // bunlar şimdilik değişkenden geliyor backende bağlamayı unutma-----------------------------
-  p.toLowerCase().includes(value) // includes true veya false döner
-);
+  let filtrelenmisOneriler = products.filter(p => // bunlar şimdilik değişkenden geliyor backende bağlamayı unutma-----------------------------
+    p.toLowerCase().includes(value) // includes true veya false döner
+  );
 
-filtrelenmisOneriler.forEach(p => {
-let div = document.createElement("div");
+  filtrelenmisOneriler.forEach(p => {
+    let div = document.createElement("div");
 
-div.className = "resultItem";
-div.textContent = p;
+    div.className = "resultItem";
+    div.textContent = p;
 
-  div.onclick = () => {
-    input.value = p;
-    aramaKutusu.style.display = "none";
-  };
+    div.onclick = () => {
+      input.value = p;
+      aramaKutusu.style.display = "none";
+      window.location.href = `anasayfa.html?search=${encodeURIComponent(p)}`;
+    };
 
-sonuclar.appendChild(div);
+    sonuclar.appendChild(div);
   });
 });
 
@@ -108,8 +109,14 @@ aramaKutusu.addEventListener("click", (e) => {
 aramaKutusuInputu.addEventListener("keydown", (enterTusu) => {
 if(enterTusu.key === "Enter"){
 
-  input.value = aramaKutusuInputu.value;
-  aramaKutusu.style.display = "none";
+    input.value = aramaKutusuInputu.value;
+    aramaKutusu.style.display = "none";
+    const query = aramaKutusuInputu.value.trim();
+    if (query) {
+      window.location.href = `anasayfa.html?search=${encodeURIComponent(query)}`;
+    } else {
+      window.location.href = `anasayfa.html`;
+    }
   }
 });
 
@@ -118,12 +125,14 @@ if(enterTusu.key === "Enter"){
 
 // popüler ürünlere tıklayınca inputa gelir ve panel kapanır
 populerAramalar.forEach(item => {
-item.addEventListener("click", () => {
+  item.addEventListener("click", () => {
 
-aramaKutusuInputu.value = item.textContent;
-input.value = item.textContent;
+    const query = item.textContent.trim();
+    aramaKutusuInputu.value = query;
+    input.value = query;
 
-aramaKutusu.style.display = "none";
+    aramaKutusu.style.display = "none";
+    window.location.href = `anasayfa.html?search=${encodeURIComponent(query)}`;
   });
 });
 

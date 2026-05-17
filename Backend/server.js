@@ -57,27 +57,6 @@ next();
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database("./urunler.db");
 
-app.post("/search-products", (req,res)=>{
-
-const {text} = req.body;
-const aramaMetni = '%' + text + '%';
-
-db.all(`
-    SELECT * FROM urunler
-    WHERE name LIKE ?
-    OR category LIKE ?
-    OR keywords LIKE ?
-`, [aramaMetni, aramaMetni, aramaMetni], (err, rows) => {
-    if (err) {
-        console.log(err);
-        return res.status(500).json({error:"hata"});
-    }
-    res.json(rows);
-});
-
-});
-
-
 //dbye urun ekleme
 app.post("/add-product", (req, res) => {
     const { name, price, image, category, keywords } = req.body;
@@ -175,6 +154,48 @@ app.post("/ai-autocomplete", rateLimit, async (req, res) => {
         res.json({ öneri: "" });
     }
 });
+
+
+
+
+
+
+
+// input arama fonksiyonu
+
+
+app.post("/search-products", (req, res) => {
+
+const text = req.body.text || "";
+const searchText = text.toLowerCase();
+
+db.all(`
+SELECT * FROM urunler
+WHERE 
+LOWER(name) LIKE ?
+OR LOWER(category) LIKE ?
+OR LOWER(keywords) LIKE ?
+`, [
+    `%${searchText}%`,
+    `%${searchText}%`,
+    `%${searchText}%`
+], (err, rows) => {
+
+    if(err){
+        console.log(err);
+        return res.status(500).json({error:"DB hata"});
+    }
+
+    res.json(rows);
+
+});
+
+});
+
+
+
+
+
 
 
 

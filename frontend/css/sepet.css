@@ -1,0 +1,114 @@
+        .sepetAlani {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .sepetDropdown {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            width: 300px;
+            padding: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .sepetDropdown.active {
+            display: flex;
+        }
+
+        .sepetDropdown h4 {
+            margin-bottom: 10px;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+        }
+
+        #sepetIcerik {
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .sepetItem {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .sepetItem img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .sepetItemDetay {
+            flex: 1;
+            margin-left: 10px;
+        }
+
+        .sepetItemDetay p {
+            font-size: 12px;
+            color: var(--text);
+            font-weight: 600;
+            white-space: nowrap; /* 2-3 satırda ekstra satırları siliyo */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 150px;
+        }
+
+        .sepetItemDetay b {
+            font-size: 14px;
+            color: var(--primary);
+        }
+
+        .sepetSilBtn {
+            background: red;
+            margin-right: 7px;
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        .sepetAlt p {
+            font-weight: bold;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .sepetAlt button {
+            width: 100%;
+            padding: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+
+        #sepetIcerik::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #sepetIcerik::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #sepetIcerik::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 10px;
+        }

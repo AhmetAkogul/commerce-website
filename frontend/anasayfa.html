@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="tr">
 
@@ -8,6 +8,7 @@
     <title>Anasayfa</title>
     <link rel="stylesheet" href="css/css.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/sepet.css">
 
     <style>
         * {
@@ -263,7 +264,7 @@
 
 
 
-        
+
         .urunContainer {
             max-width: 1350px;
             margin: 30px auto 80px auto;
@@ -518,7 +519,7 @@
 
 <body>
     <header class="navbar">
-        <div class="logo">E Ticaret</div>
+        <div class="logo"><a href="anasayfa.html" style="text-decoration: none; color: var(--text);">E Ticaret</a></div>
 
 
 
@@ -570,7 +571,19 @@
                 </ul>
             </div>
 
-            <div class="sepetEmoji">🛒</div>
+            <div class="sepetAlani">
+                <div class="sepetEmoji" id="sepetBtn">🛒 <span id="sepetSayac"
+                        style="position: absolute; top: -5px; right: 50px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; display: none;">0</span>
+                </div>
+                <div class="sepetDropdown" id="sepetDropdown">
+                    <h4>Sepetim</h4>
+                    <div id="sepetIcerik"></div>
+                    <div class="sepetAlt">
+                        <p>Toplam: <span id="sepetToplam">0</span> TL</p>
+                        <button id="sepetOnaylaBtn">Siparişi Tamamla</button>
+                    </div>
+                </div>
+            </div>
             <button id="temaBtn">🌙</button>
 
         </div>
@@ -585,9 +598,11 @@
         <div class="girisKutuContent">
             <h1>Yeni Nesil Alışveriş Deneyimi</h1>
             <p>Aradığın her şey, en uygun fiyatlarla ve kapında.</p>
-            
+
             <!-- ürünlerin 35 px üstüne kaydırmak için gerekli olan kod -->
-            <button onclick="const el = document.getElementById('urunlerAlani'); const y = el.getBoundingClientRect().top + window.pageYOffset - 35; window.scrollTo({top: y, behavior: 'smooth'});">Fırsatları İncele</button>
+            <button
+                onclick="const el = document.getElementById('urunlerAlani'); const y = el.getBoundingClientRect().top + window.pageYOffset - 35; window.scrollTo({top: y, behavior: 'smooth'});">Fırsatları
+                İncele</button>
         </div>
     </div>
 

@@ -7,6 +7,8 @@
     let timeout;
     let latestRequestTime = 0;
 
+    if(!input || !ghost) return;
+
     input.addEventListener("input", ()=>{
 
         clearTimeout(timeout);
