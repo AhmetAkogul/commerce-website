@@ -142,7 +142,7 @@ app.post("/ai-autocomplete", rateLimit, async (req, res) => {
             öneri = data.choices[0].message.content.trim().split('\n')[0].replace(/[^a-zA-ZğüşıöçĞÜŞİÖÇ ]/g, '').trim(); // sadece harfleri ve boşlukları al, gereksiz noktalama işaretlerini sil
         }
 
-        // eger ai saçma bir şey ürettiyse veya inputla başlamıyorsa ghost text olarak kullanılamaz
+        // eger ai saçma bir şey ürettiyse veya inputla başlamıyorsa ghost text olarak kullanmıyoruz
         if (!öneri.toLowerCase().startsWith(lowerText)) {
             öneri = "";
         }
