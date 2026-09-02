@@ -40,7 +40,7 @@ rateLimitMap[ip] = rateLimitMap[ip].filter(
 // max 5 request
 if(rateLimitMap[ip].length >= 5){
     return res.status(429).json({
-        message: "Çok fazla istek attın 🚫"
+        message: "Çok fazla istek attın"
     });
 }
 
@@ -123,7 +123,7 @@ app.post("/ai-autocomplete", rateLimit, async (req, res) => {
             {
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer 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",
+                    "Authorization": "Bearer tokeni gir", //!
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
